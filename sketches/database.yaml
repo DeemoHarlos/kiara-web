@@ -1,0 +1,80 @@
+# object and enum definition
+- Language:
+  main: string.ISO639_1
+  all: string.ISO639_1[]
+- StreamTime:
+  publish: Date
+  schedule: Date
+  start: Date
+  end: Date
+  duration: number # in seconds
+
+- STREAM_TYPE: CONTENT_TYPE + '/' + (GAME_TYPE | MUSIC_TYPE | ...) + ...
+- CONTENT_TYPE: 'debut', 'game', 'talk', 'superchat',
+  'karaoke', 'drawing', 'music', 'other', ...
+- GAME_TYPE: string # game names
+- MUSIC_TYPE: 'cover', 'original'
+# ... more types
+
+# collections
+- Group
+  name: string
+  region: string.ISO3166_1
+  isCorporate: boolean
+  subgroups: SubGroup.id[]
+
+- SubGroup
+  name: string
+  members: Vtuber.id[]
+  group: Group.id
+
+- Vtuber
+  name: string
+  name_en?: string
+  language: Language
+  debutDate?: Date
+  graduateDate?: Date
+  youtubeChannelId?: string
+  twitterId?: string
+  twitchId?: string
+  subGroup: SubGroup.id
+  group: Group.id
+  streams: Stream[]
+
+- Stream
+  url: string
+  isVideo: boolean
+  isPremiere: boolean
+  hasChat: boolean
+  host: 'youtube', 'twitch'
+  title: string
+  time: StreamTime | Date
+  types: STREAM_TYPE[]
+  tags: string[]
+  owner: Vtuber.id
+  language: Language
+  members: Vtuber.id[]
+  povs: Stream.id[]
+
+- ClipChannel # support Youtube only
+  name: string
+  youtubeChannelId?: string
+  language: Language
+  clips: Clip[]
+  mainTargets: (Group | SubGroup | Vtuber)[]
+
+- Clip # support Youtube only
+  url: string
+  title: string
+  types: STREAM_TYPE[]
+  tags: string[]
+  owner: ClipChannel.id
+  duration: number # in seconds
+  members: Vtuber.id[]
+  refStreams: Stream.id[]
+
+- Fanwork
+  url: string
+  type: 'art', 'music', 'animation', '3dmodel',
+    'game', 'fanfic', 'meme', 'cosplay'
+  host: 'facebook', 'youtube', 'pixiv', 'twitter', 'youtube', string
