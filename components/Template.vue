@@ -1,14 +1,16 @@
 <template lang="pug">
-  div#kiara-navbar THIS IS NAVBAR
+  div
 </template>
 
 <style lang="sass" scoped>
-#kiara-navbar
-  display: none
 </style>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  components: {},
+  data: () => ({}),
+  methods: {},
+})
 </script>
