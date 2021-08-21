@@ -1,8 +1,11 @@
 <template lang="pug">
-  div
-    NuxtLink(to="/kiara/temp") temp
-    NuxtChild
+  div#kiara-navbar THIS IS NAVBAR
 </template>
+
+<style lang="sass" scoped>
+#kiara-navbar
+  display: none
+</style>
 
 <script lang="ts">
 import Vue from 'vue'

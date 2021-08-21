@@ -18,7 +18,7 @@
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.1.0",
     "sass": "^1.38.0",
-    "sass-loader": "^12.1.0"
+    "sass-loader": "^10.1.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
