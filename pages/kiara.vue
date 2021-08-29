@@ -2,6 +2,7 @@
   div#kiara.position-relative
     #cover.position-absolute.w-100(:class="{ scrolled }")
       #bg-image-container.position-absolute.w-100.h-100
+        CoverArtCarousel.w-100.h-100(:fanarts="fanarts")
 
       #title-text.text-center.text-white(@click="scrollUp")
         #title Takanashi Kiara
@@ -51,9 +52,9 @@ $kiara-orange: #FF511C
         opacity: 0
 
     #bg-image-container
-      background-image: url(https://picsum.photos/1920/1080)
-      background-size: cover
-      background-position: center
+      // background-image: url(https://picsum.photos/1920/1080)
+      // background-size: cover
+      // background-position: center
       inset: 0
       z-index: -1
 
@@ -132,17 +133,26 @@ $kiara-orange: #FF511C
 import Vue from 'vue'
 import { BIconChevronCompactDown } from 'bootstrap-vue'
 
+import { Fanart } from '~/components/Fanart.vue'
+
 export default Vue.extend({
   components: { BIconChevronCompactDown },
   data: () => ({
     scrolled: false,
     pages: [
-      { route:"/kiara/intro"   , text:"Intro" },
+      { route:"/kiara/intro", text:"Intro" },
       { route:"/kiara/timeline", text:"Timeline" },
       { route:"/kiara/videos", text:"Videos" },
       { route:"/kiara/music", text:"Music" },
       { route:"/kiara/twitter", text:"Twitter" },
       { route:"/kiara/kfp", text:"KFP" },
+    ],
+    fanarts: <Array<Fanart>> [
+      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
+      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
+      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
+      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
+      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
     ]
   }),
   methods: {
