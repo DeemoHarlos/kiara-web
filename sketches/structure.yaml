@@ -1,0 +1,107 @@
+/index.html - Vtuber Fanpage
+	- Hololive
+		- Introduction
+		- Hololive JP Gen 0
+		- Hololive JP Gen 1
+		- Hololive JP Gamers
+		- Hololive JP Gen 2
+		- Hololive JP Gen 3
+		- Hololive JP Gen 4
+		- Hololive JP Gen 5
+		- Hololive ID Gen 1
+		- Hololive ID Gen 2
+		- Hololive EN HoloMyth
+			- Calliope Mori
+			- Takanashi Kiara
+			- Ninomae Ina'nis
+			- Gawr Gura
+			- Amelia Watson
+		- Hololive EN Singer
+	- Nijisanji
+	- ...other company/group
+	- Independent
+
+/takanashikiara.html
+	- Intro
+		- Basic Info
+		- Highlights
+		- Links
+	- Timeline
+	- Videos
+	- Twitter
+		- tweets fromKiara
+		- tags #takanashiKiara
+		- tags #kfp
+		- tags #
+	- Fan Base (KFP)
+		- Clips
+		- Arts
+		- music cover/remix
+		- animation
+		- KFN (KFP specific)
+		- other
+		- memorial
+			- vivalakiara.com
+
+Database
+# object and enum definition
+- Language:
+	main: string.ISO639_1
+	all: string.ISO639_1[]
+
+- STREAM_TAG: STREAM_TYPE + '/' + (GAME_TYPE | MUSIC_TYPE) + ...
+- STREAM_TYPE: 'debut', 'game', 'talk', 'superchat',
+	'karaoke', 'drawing', 'music', 'other', ...
+- GAME_TYPE: string # game names
+- MUSIC_TYPE: 'cover', 'original'
+# ... more types
+
+# collections
+- Group
+	name: string
+	region: string.ISO3166_1
+	isCorporate: boolean
+	subgroups: SubGroup.id[]
+
+- SubGroup
+	name: string
+	members: Vtuber.id[]
+	group: Group.id
+
+- Vtuber
+	name: string
+	name_en?: string
+	language: Language
+	debutDate: Date | null
+	graduateDate: Date | null
+	youtubeChannelId?: string
+	twitterId?: string
+	twitchId?: string
+	subGroup: SubGroup.id
+	group: Group.id
+
+- Streams
+	url: string
+	host: 'youtube', 'twitch'
+	tags: STREAM_TAG[]
+	owner: Vtuber.id
+	language: Language
+	members: Vtuber.id[]
+
+- ClipChannel # support Youtube only
+	name: string
+	youtubeChannelId?: string
+	language: Language
+	clips: Clip[]
+	mainTargets: (Group | SubGroup | Vtuber)[]
+
+- Clip # support Youtube only
+	url: string
+	tags: STREAM_TAG[]
+	members: Vtuber.id[]
+
+- Fanwork
+	url: string
+	type: 'art', 'music', 'animation', '3dmodel',
+		'game', 'fanfic', 'meme', 'cosplay'
+	host: 'facebook', 'youtube', 'pixiv', 'twitter', 'youtube', string
