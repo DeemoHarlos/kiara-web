@@ -7,14 +7,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Props } from '~/util/types';
-
-export type TemplateProps = Props<{
-}>
 
 export default Vue.extend({
   components: {},
-  props: <TemplateProps>{},
+  props: {},
   data: () => ({}),
   methods: {},
 })

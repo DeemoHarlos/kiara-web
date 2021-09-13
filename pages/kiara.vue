@@ -32,7 +32,7 @@ $line-color: #CCC
 $banner-height: 180px
 $navbar-height: 60px
 $navlink-height: 43px
-$navlink-bgcolor: #FFFFFF99
+$navlink-bgcolor: #00000099
 $kiara-orange: #FF511C
 
 #kiara
@@ -60,17 +60,19 @@ $kiara-orange: #FF511C
 
     #title-text
       font-family: Noto Sans
+      text-shadow: 0 0 10px black
 
       #title
         font-size: 6rem
-        font-weight: 100
+        font-weight: 300
 
       #subtitle
         font-size: 3rem
-        font-weight: 100
+        font-weight: 300
 
     #scroll-down
       font-size: 9rem
+      text-shadow: 0 0 10px black
       bottom: 0
       transition: opacity $scroll-transition-time
       opacity: 1
@@ -89,7 +91,7 @@ $kiara-orange: #FF511C
 
       .navline-line
         width: 1px
-        height: 60%
+        height: 80%
         margin: 0 10px
         background-color: $line-color
         transform: rotate(30deg)
@@ -133,8 +135,6 @@ $kiara-orange: #FF511C
 import Vue from 'vue'
 import { BIconChevronCompactDown } from 'bootstrap-vue'
 
-import { Fanart } from '~/components/Fanart.vue'
-
 export default Vue.extend({
   components: { BIconChevronCompactDown },
   data: () => ({
@@ -147,12 +147,15 @@ export default Vue.extend({
       { route:"/kiara/twitter", text:"Twitter" },
       { route:"/kiara/kfp", text:"KFP" },
     ],
-    fanarts: <Array<Fanart>> [
-      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
-      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
-      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
-      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
-      { imageUrl: 'https://picsum.photos/1920/1080', artist: 'random' },
+    fanarts: [
+      { imageUrl: 'https://pbs.twimg.com/media/E7x3cAzVoAAFghU?format=jpg&name=large', artist: '亜果 @akira0053' },
+      { imageUrl: 'https://pbs.twimg.com/media/E87dlRCVIAQuQJf?format=jpg&name=900x900', artist: 'Pearl🌟Star @PearlStar_vt' },
+      { imageUrl: 'https://pbs.twimg.com/media/E7voiwzVIAE3RFD?format=jpg&name=large', artist: 'Zet @zetxune' },
+      { imageUrl: 'https://pbs.twimg.com/media/E7BhrZeXMAEkOWR?format=jpg&name=large', artist: 'Eden Exile @exile_eden' },
+      { imageUrl: 'https://pbs.twimg.com/media/E6vrheZWYBIizMf?format=jpg&name=large', artist: 'Nue @nuebunny' },
+      { imageUrl: 'https://pbs.twimg.com/media/E6XkN7UVUAEyGs-?format=jpg&name=4096x4096', artist: 'QUASARCAKE @QUASARCAKE' },
+      { imageUrl: 'https://pbs.twimg.com/media/E6Uo5v0VkA8PXzl?format=jpg&name=4096x4096', artist: 'COCOball @COCOballKING' },
+      { imageUrl: 'https://pbs.twimg.com/media/E6GdrMJVoAE_rQK?format=jpg&name=medium', artist: 'Ninomae Ina’nis🐙holoEN @ninomaeinanis' },
     ]
   }),
   methods: {
@@ -161,6 +164,7 @@ export default Vue.extend({
     },
     scrollUp(): void {
       this.scrolled = false
+      this.$router.push('/kiara')
     },
   },
 })

@@ -1,31 +1,29 @@
 <template lang="pug">
-  b-carousel(img-height="100vh")
+  b-carousel(img-height="100%" :no-hover-pause="false")
     b-carousel-slide(v-for="(fanart, i) in fanarts" :key="i")
-      Fanart(v-bind="fanart")
+      template(#img): Fanart(v-bind="fanart")
 </template>
 
-<style lang="sass" scoped>
+<style lang="sass">
+.carousel-inner
+  height: 100%
+
 .carousel-item
   width: 100%
-  height: 100vh
+  height: 100%
   background-position: center
   background-size: cover
 </style>
 
 <script lang="ts">
 import Vue from 'vue'
-import { Props } from '~/util/types'
 
-import { Fanart } from './Fanart.vue'
-
-export type CoverArtCarouselProps = Props<{
-  fanarts: Array<Fanart>,
-}>
+import { FanartOption } from './Fanart.vue'
 
 export default Vue.extend({
   components: {},
-  props: <CoverArtCarouselProps> {
-    fanarts: [],
+  props: {
+    fanarts: Array as () => Array<FanartOption>,
   },
   data: () => ({}),
   methods: {},
