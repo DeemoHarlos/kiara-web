@@ -1,16 +1,16 @@
 <template lang="pug">
-  div.display-1.text-center.text-white Videos
+  div.page-container.container-fluid
+    div.text-white.page-title Videos
 </template>
 
 <style lang="sass" scoped>
+@import '@/assets/kiara/index.sass'
 </style>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 
-export default Vue.extend({
-  components: {},
-  data: () => ({}),
-  methods: {},
-})
+@Component
+export default class Fanart extends Vue {
+}
 </script>

@@ -1,0 +1,49 @@
+$line-color: #CCC
+$navbar-height: 60px
+$navlink-height: 43px
+$navlink-bgcolor: #00000099
+$transition-time: 300ms
+
+#navbar
+  height: $navbar-height
+  border-bottom: $line-color 1px solid
+  bottom: 0
+  transition: opacity $transition-time
+  z-index: 20
+
+  .navline-line
+    width: 1px
+    height: 80%
+    margin: 0 10px
+    background-color: $line-color
+    transform: rotate(30deg)
+
+  .navlink
+    div
+      transition: background-color $transition-time
+      background-color: transparent
+
+      &::before, &::after
+        position: absolute
+        content: ""
+        top: 0
+        width: 0px
+        height: 0px
+        transition: border-color $transition-time
+
+      &::before
+        right: 100%
+        border-bottom: $navlink-height solid transparent
+        border-left: calc(#{$navlink-height} / 1.732) solid transparent
+
+      &::after
+        left: 100%
+        border-top: $navlink-height solid transparent
+        border-right: calc(#{$navlink-height} / 1.732) solid transparent
+
+      &:hover, &.current
+        background-color: $navlink-bgcolor
+        &::before
+          border-bottom-color: $navlink-bgcolor
+        &::after
+          border-top-color: $navlink-bgcolor
