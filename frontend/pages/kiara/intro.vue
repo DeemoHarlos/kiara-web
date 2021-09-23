@@ -10,25 +10,30 @@
         | dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
         | non proident, sunt in culpa qui officia deserunt mollit anim id
         | est laborum.
+      NuxtLink(to="/kiara/") BACK
     div.image-frame
       img(src="@/assets/kiara/kiara_full.png" alt="Takanashi Kiara").w-100
 </template>
 
 <style lang="sass" scoped>
-@import '@/assets/kiara/page.sass'
+@import '@/assets/kiara'
 
 #intro
-  background-color: #000000AA
   height: 100vh
   overflow-y: hidden
+
+  .text-frame
+    padding: 4rem
+    color: white
+    font-size: 2rem
+
+  .image-frame
+    padding-right: 2rem
 </style>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 
-export default Vue.extend({
-  components: {},
-  data: () => ({}),
-  methods: {},
-})
+@Component
+export default class extends Vue {}
 </script>

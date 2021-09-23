@@ -12,16 +12,16 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 import * as CSS from 'csstype'
 
 export type FanartOption = {
-  imageUrl: String
-  artist: String
+  imageUrl: string
+  artist: string
   imageStyle?: CSS.Properties
   artistStyle?: CSS.Properties
 }
 
 @Component
 export default class Fanart extends Vue {
-  @Prop() imageUrl!: String
-  @Prop() artist!: String
+  @Prop() imageUrl!: string
+  @Prop() artist!: string
   @Prop() imageStyle?: CSS.Properties
   @Prop() artistStyle?: CSS.Properties
 

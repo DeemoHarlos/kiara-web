@@ -1,3 +1,15 @@
+<template lang="pug">
+  #navbar.flex-row-center.position-fixed.w-100.px-5.py-2
+    template(v-for="(page, index) in pages")
+      .navline-line(v-if="index")
+      NuxtLink.navlink.flex-fill.h-100.mx-2.text-center.text-white(:to="page.route")
+        div.flex-row-center.position-relative.h-100(:class="{ current: page.route === $route.path }")
+          h3.w-100.m-0.pb-1 {{ page.text }}
+</template>
+
+<style lang="sass" scoped>
+@import '@/assets/kiara'
+
 $line-color: #CCC
 $navbar-height: 60px
 $navlink-height: 43px
@@ -10,6 +22,12 @@ $transition-time: 300ms
   bottom: 0
   transition: opacity $transition-time
   z-index: 20
+  &.scroll-index
+    opacity: 0
+  &.scroll-intro
+    opacity: 1
+  &.scroll-pages
+    opacity: 1
 
   .navline-line
     width: 1px
@@ -47,3 +65,22 @@ $transition-time: 300ms
           border-bottom-color: $navlink-bgcolor
         &::after
           border-top-color: $navlink-bgcolor
+</style>
+
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+
+const pages = [
+  { route: '/kiara/intro', text: 'Intro' },
+  { route: '/kiara/timeline', text: 'Timeline' },
+  { route: '/kiara/videos', text: 'Videos' },
+  { route: '/kiara/music', text: 'Music' },
+  { route: '/kiara/twitter', text: 'Twitter' },
+  { route: '/kiara/kfp', text: 'KFP' },
+]
+
+@Component
+export default class extends Vue {
+  readonly pages = pages
+}
+</script>

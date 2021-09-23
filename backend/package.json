@@ -6,7 +6,8 @@
   "type": "module",
   "dependencies": {
     "express": "^4.17.1",
-    "googleapis": "^87.0.0"
+    "googleapis": "^87.0.0",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
@@ -42,10 +43,22 @@
       "@typescript-eslint"
     ],
     "rules": {
-      "indent": ["error", 2],
-      "semi": ["warn", "never"],
-      "quotes": ["warn", "single"],
-      "comma-dangle": ["warn", "always-multiline"],
+      "indent": [
+        "error",
+        2
+      ],
+      "semi": [
+        "warn",
+        "never"
+      ],
+      "quotes": [
+        "warn",
+        "single"
+      ],
+      "comma-dangle": [
+        "warn",
+        "always-multiline"
+      ],
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars-experimental": "warn"
     }
