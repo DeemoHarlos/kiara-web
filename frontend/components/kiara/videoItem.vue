@@ -21,6 +21,42 @@
       a.stretched-link(:href="videoInfo.url" target="_blank")
 </template>
 
+<script lang="ts">
+import { computed, defineComponent, PropType, toRefs } from '@nuxtjs/composition-api'
+
+export type VideoInfo = {
+  ID: string
+  url: string
+  title: string
+  time: string
+  type: string
+  subtype: string
+  isSponsored: boolean
+  streamHost: string
+  members: string[]
+  customTags: string[]
+  language: string
+}
+
+export default defineComponent({
+  props: {
+    videoInfo: { type: Object as PropType<VideoInfo>, required: true },
+  },
+  setup(props) {
+    const { videoInfo } = toRefs(props)
+
+    const time = computed(() => {
+      const date = new Date(Date.parse(videoInfo.value.time))
+      return date.toLocaleString(undefined, {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      })
+    })
+    return { time }
+  },
+})
+</script>
+
 <style lang="sass" scoped>
 .video-item
   .card-body
@@ -30,34 +66,3 @@
   .tag
     font-size: .8rem
 </style>
-
-<script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
-
-export type VideoInfo = {
-  ID: string,
-  url: string,
-  title: string,
-  time: string,
-  type: string,
-  subtype: string,
-  isSponsored: boolean,
-  streamHost: string,
-  members: string[],
-  customTags: string[],
-  language: string
-}
-
-@Component
-export default class extends Vue {
-  @Prop() videoInfo!: VideoInfo
-
-  get time() {
-    const date = new Date(Date.parse(this.videoInfo.time))
-    return date.toLocaleString(undefined, {
-      dateStyle: 'medium',
-      timeStyle: 'short',
-    })
-  }
-}
-</script>

@@ -4,6 +4,21 @@
       template(#img): Fanart(v-bind="fanart")
 </template>
 
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+import { FanartOption } from './Fanart.vue'
+
+export default defineComponent({
+  props: {
+    fanarts: { type: Array as PropType<Array<FanartOption>>, required: true },
+  },
+  setup() {
+    return {}
+  },
+})
+</script>
+
 <style lang="sass">
 .carousel-inner
   height: 100%
@@ -14,18 +29,3 @@
   background-position: center
   background-size: cover
 </style>
-
-<script lang="ts">
-import Vue from 'vue'
-
-import { FanartOption } from './Fanart.vue'
-
-export default Vue.extend({
-  components: {},
-  props: {
-    fanarts: Array as () => Array<FanartOption>,
-  },
-  data: () => ({}),
-  methods: {},
-})
-</script>

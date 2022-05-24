@@ -4,11 +4,9 @@
       slot(name="artist") {{ artist }}
 </template>
 
-<style lang="sass" scoped>
-</style>
-
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { computed, defineComponent, PropType, toRefs } from '@nuxtjs/composition-api'
+
 import * as CSS from 'csstype'
 
 export type FanartOption = {
@@ -18,42 +16,55 @@ export type FanartOption = {
   artistStyle?: CSS.Properties
 }
 
-@Component
-export default class Fanart extends Vue {
-  @Prop() imageUrl!: string
-  @Prop() artist!: string
-  @Prop() imageStyle?: CSS.Properties
-  @Prop() artistStyle?: CSS.Properties
 
-  readonly imageDefaultStyle: CSS.Properties = {
-    backgroundImage: `url(${this.imageUrl})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  }
+export default defineComponent({
+  props: {
+    imageUrl: { type: String, required: true },
+    artist: { type: String, required: true },
+    imageStyle: { type: Object as PropType<CSS.Properties>, default: () => ({}) },
+    artistStyle: { type: Object as PropType<CSS.Properties>, default: () => ({}) },
+  },
+  setup(props) {
+    const { imageUrl, imageStyle, artistStyle } = toRefs(props)
 
-  readonly artistDefaultStyle: CSS.Properties = {
-    position: 'absolute',
-    right: '.3rem',
-    top: 0,
-    fontSize: '1rem',
-    fontFamily: 'monospace',
-    color: '#FFFFFF99',
-    textShadow: '0 0 5px black',
-  }
+    const imageDefaultStyle: CSS.Properties = {
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+    }
 
-  get combinedImageStyle() {
+    const artistDefaultStyle: CSS.Properties = {
+      position: 'absolute',
+      right: '.3rem',
+      top: 0,
+      fontSize: '1rem',
+      fontFamily: 'monospace',
+      color: '#FFFFFF99',
+      textShadow: '0 0 5px black',
+    }
+
+    const combinedImageStyle = computed(() => {
+      return {
+        backgroundImage: `url('${imageUrl.value}')`,
+        ...imageDefaultStyle,
+        ...imageStyle,
+      } as CSS.Properties
+    })
+
+    const combinedArtistStyle = computed(() => {
+      return {
+        ...artistDefaultStyle,
+        ...artistStyle,
+      } as CSS.Properties
+    })
+
     return {
-      ...this.imageDefaultStyle,
-      ...this.imageStyle || {},
-    } as CSS.Properties
-  }
-
-  get combinedArtistStyle() {
-    return {
-      ...this.artistDefaultStyle,
-      ...this.artistStyle || {},
-    } as CSS.Properties
-  }
-}
+      combinedImageStyle,
+      combinedArtistStyle,
+    }
+  },
+})
 </script>
+
+<style lang="sass" scoped>
+</style>

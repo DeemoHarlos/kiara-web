@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.display-1.text-center.text-white Music
+  div
 </template>
 
 <script lang="ts">
@@ -12,5 +12,4 @@ export default defineComponent({
 })
 </script>
 
-<style lang="sass" scoped>
-</style>
+<style lang="sass" scoped></style>

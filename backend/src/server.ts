@@ -1,5 +1,10 @@
 import express from 'express'
+import dotenv from 'dotenv'
+import path from 'path'
+
 import { SHEET, getData } from './db'
+
+dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 
 const app = express()
 const port = 2434
@@ -15,7 +20,7 @@ app.use((_, res, next) => {
   next()
 })
 
-app.get('/:ID', async (req, res) => {
+app.get('/:ID', async(req, res) => {
   const ID = req.params.ID as SHEET
   const data = await getData(ID)
   res.json(data)
