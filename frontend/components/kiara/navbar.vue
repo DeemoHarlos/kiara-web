@@ -47,7 +47,7 @@ $transition-time: 300ms
     height: 2em
     margin: 0 10px
     background-color: $line-color
-    transform: rotate(33deg) translate(2px, 2px)
+    transform: rotate(33deg)
 
   .navlink
     div

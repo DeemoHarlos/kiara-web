@@ -1,5 +1,5 @@
 <template lang="pug">
-  .page-container.container-fluid
+  .page-container.container-xl
     .text-white.page-title Videos
     .mb-4(v-for="(video, i) in videoList")
       kiara-video-item(:videoInfo="video" :key="i")
