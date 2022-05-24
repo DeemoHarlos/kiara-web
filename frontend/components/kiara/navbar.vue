@@ -1,45 +1,59 @@
 <template lang="pug">
-  #navbar.flex-row-center.position-fixed.w-100.px-5.py-2
+  #navbar.flex-row.middle-center.w-100.px-5.py-2
+    span#navbar-name.mr-5 Takanashi Kiara
     template(v-for="(page, index) in pages")
       .navline-line(v-if="index")
-      NuxtLink.navlink.flex-fill.h-100.mx-2.text-center.text-white(:to="page.route")
-        div.flex-row-center.position-relative.h-100(:class="{ current: page.route === $route.path }")
-          h3.w-100.m-0.pb-1 {{ page.text }}
+      NuxtLink.navlink.flex-fill.mx-3.text-center.text-white(:to="page.route")
+        div.flex-row-center.position-relative.h-100.py-2(:class="{ current: page.route === $route.path }")
+          span.h6.w-100.m-0.pb-1 {{ page.text }}
 </template>
+
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
+  setup() {
+    const pages = [
+      { route: '/kiara/intro', text: 'Intro' },
+      { route: '/kiara/timeline', text: 'Timeline' },
+      { route: '/kiara/videos', text: 'Videos' },
+      { route: '/kiara/music', text: 'Music' },
+      { route: '/kiara/twitter', text: 'Twitter' },
+      { route: '/kiara/kfp', text: 'KFP' },
+    ]
+    return { pages }
+  },
+})
+</script>
 
 <style lang="sass" scoped>
 @import '@/assets/kiara'
 
-$line-color: #CCC
-$navbar-height: 60px
-$navlink-height: 43px
-$navlink-bgcolor: #00000099
+$line-color: $kiara-black
+$navlink-tilt: 25px
+$navlink-bgcolor: $kiara-orange
 $transition-time: 300ms
 
 #navbar
-  height: $navbar-height
+  background-color: $kiara-green
   border-bottom: $line-color 1px solid
-  bottom: 0
   transition: opacity $transition-time
-  z-index: 20
-  &.scroll-index
-    opacity: 0
-  &.scroll-intro
-    opacity: 1
-  &.scroll-pages
-    opacity: 1
+
+  #navbar-name
+    font-size: 2rem
 
   .navline-line
     width: 1px
-    height: 80%
+    height: 2em
     margin: 0 10px
     background-color: $line-color
-    transform: rotate(30deg)
+    transform: rotate(33deg) translate(2px, 2px)
 
   .navlink
     div
       transition: background-color $transition-time
       background-color: transparent
+      color: $kiara-black
 
       &::before, &::after
         position: absolute
@@ -51,36 +65,19 @@ $transition-time: 300ms
 
       &::before
         right: 100%
-        border-bottom: $navlink-height solid transparent
-        border-left: calc(#{$navlink-height} / 1.732) solid transparent
+        border-bottom: 2.5em solid transparent
+        border-left: $navlink-tilt solid transparent
 
       &::after
         left: 100%
-        border-top: $navlink-height solid transparent
-        border-right: calc(#{$navlink-height} / 1.732) solid transparent
+        border-top: 2.5em solid transparent
+        border-right: $navlink-tilt solid transparent
 
       &:hover, &.current
         background-color: $navlink-bgcolor
+        color: white
         &::before
           border-bottom-color: $navlink-bgcolor
         &::after
           border-top-color: $navlink-bgcolor
 </style>
-
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-
-const pages = [
-  { route: '/kiara/intro', text: 'Intro' },
-  { route: '/kiara/timeline', text: 'Timeline' },
-  { route: '/kiara/videos', text: 'Videos' },
-  { route: '/kiara/music', text: 'Music' },
-  { route: '/kiara/twitter', text: 'Twitter' },
-  { route: '/kiara/kfp', text: 'KFP' },
-]
-
-@Component
-export default class extends Vue {
-  readonly pages = pages
-}
-</script>

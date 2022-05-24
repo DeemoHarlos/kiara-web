@@ -3,11 +3,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, onMounted, useRouter } from '@nuxtjs/composition-api'
 
-export default Vue.extend({
-  mounted() {
-    this.$router.push('/kiara/')
-  }
+export default defineComponent({
+  setup() {
+    const router = useRouter()
+
+    onMounted(() => {
+      router.push('/kiara/')
+    })
+
+    return {}
+  },
 })
 </script>

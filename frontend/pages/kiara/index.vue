@@ -8,6 +8,16 @@
       NuxtLink(to="/kiara/intro"): BIconChevronCompactDown
 </template>
 
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+import { BIconChevronCompactDown } from 'bootstrap-vue'
+
+export default defineComponent({
+  components: { BIconChevronCompactDown },
+})
+</script>
+
 <style lang="sass" scoped>
 @import '@/assets/kiara'
 
@@ -44,11 +54,3 @@ $transition-time: 300ms
     &.scroll-intro, &.scroll-pages
       z-index: -10
 </style>
-
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import { BIconChevronCompactDown } from 'bootstrap-vue'
-
-@Component({ components: { BIconChevronCompactDown } })
-export default class extends Vue {}
-</script>

@@ -2,15 +2,15 @@
   div.display-1.text-center.text-white KFP
 </template>
 
-<style lang="sass" scoped>
-</style>
-
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default Vue.extend({
-  components: {},
-  data: () => ({}),
-  methods: {},
+export default defineComponent({
+  setup() {
+    return {}
+  },
 })
 </script>
+
+<style lang="sass" scoped>
+</style>
