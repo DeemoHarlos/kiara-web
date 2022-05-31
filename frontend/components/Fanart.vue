@@ -1,7 +1,9 @@
 <template lang="pug">
-  div.image.w-100.h-100.position-relative(:style="combinedImageStyle")
-    div.artist(:style="combinedArtistStyle")
-      slot(name="artist") {{ artist }}
+  div.fanart.w-100.h-100.position-relative.overflow-hidden
+    div.blur.w-100.h-100(:style="{ backgroundImage: `url('${imageUrl}')` }")
+    div.image.w-100.h-100(:style="combinedImageStyle")
+      div.artist(:style="combinedArtistStyle")
+        slot(name="artist") {{ artist }}
 </template>
 
 <script lang="ts">
@@ -29,7 +31,7 @@ export default defineComponent({
 
     const imageDefaultStyle: CSS.Properties = {
       backgroundPosition: 'center',
-      backgroundSize: 'cover',
+      backgroundSize: 'auto 100%',
       backgroundRepeat: 'no-repeat',
     }
 
@@ -67,4 +69,15 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+.fanart
+  .blur
+    background-position: center
+    background-size: cover
+    background-repeat: no-repeat
+    filter: blur(16px)
+    transform: scale(1.1)
+    position: absolute
+    top: 0
+    left: 0
+    z-index: -1
 </style>
