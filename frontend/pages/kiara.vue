@@ -4,10 +4,9 @@
   )
     #bg-image-container.fill-box
       CoverArtCarousel.fill-box(:fanarts="fanarts")
-    div#page-container.px-5.pt-4
-      NuxtChild
-      NuxtLink#back.position-fixed.btn.btn-primary(to="/kiara/") BACK
     kiara-navbar#navbar.position-fixed
+    div#page-container
+      NuxtChild
 </template>
 
 <script lang="ts">
@@ -51,14 +50,11 @@ $transition-time: 300ms
   #bg-image-container
     inset: 0
     z-index: -1
-    opacity: 0
-    transition: opacity $transition-time
   #page-container
     height: 100vh
     overflow-y: auto
     margin-top: $navbar-height
-    padding-bottom: $navbar-height
-    background-color: $kiara-yellow
+    background-color: rgba($kiara-black, 0.75)
     #back
       opacity: 1
       bottom: 1rem
@@ -71,22 +67,15 @@ $transition-time: 300ms
     transition: opacity $transition-time
 
 #kiara.index
-  #bg-image-container
-    opacity: 1
   #page-container
     background-color: transparent
-    #back
-      opacity: 0
   #navbar
+    pointer-events: none
     opacity: 0
 
 #kiara.intro
-  #bg-image-container
-    opacity: 1
   #page-container
     background-color: rgba($kiara-black, 0.75)
-    #back
-      opacity: 1
   #navbar
     opacity: 1
 </style>

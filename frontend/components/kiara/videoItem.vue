@@ -59,6 +59,8 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .video-item
+  .card
+    background-color: #FFFFFFCC
   .card-body
     padding: .5rem 1rem
   .type, .subtype

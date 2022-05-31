@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.display-1.text-center.text-white Twitter
+  div.display-1.text-center.text-white Lore
 </template>
 
 <script lang="ts">

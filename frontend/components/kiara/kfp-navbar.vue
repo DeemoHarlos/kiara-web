@@ -1,11 +1,9 @@
 <template lang="pug">
-  #navbar.flex-row.middle-center.w-100.px-5.py-2
-    span#navbar-name.mr-5
-      NuxtLink(to="/kiara/") Takanashi Kiara
+  #kfp-navbar.flex-row.middle-center.w-100.px-5.py-2
     template(v-for="(page, index) in pages")
       .navline-line(v-if="index")
       NuxtLink.navlink.flex-fill.mx-3.text-center.text-white(:to="page.route")
-        div.flex-row-center.position-relative.h-100.py-2(:class="{ current: page.route === $route.path }")
+        div.flex-row-center.position-relative.h-100(:class="{ current: page.route === $route.path }")
           span.h6.w-100.m-0.pb-1 {{ page.text }}
 </template>
 
@@ -15,13 +13,13 @@ import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
   setup() {
     const pages = [
-      { route: '/kiara/intro', text: 'Intro' },
-      { route: '/kiara/lore', text: 'Lore' },
-      { route: '/kiara/history', text: 'History' },
-      { route: '/kiara/timeline', text: 'Timeline' },
-      { route: '/kiara/videos', text: 'Videos' },
-      { route: '/kiara/music', text: 'Music' },
-      { route: '/kiara/kfp', text: 'KFP' },
+      { route: '/kiara/kfp/art', text: 'Artwork' },
+      { route: '/kiara/kfp/music', text: 'Music' },
+      { route: '/kiara/kfp/animation', text: 'Animation' },
+      { route: '/kiara/kfp/comics', text: 'Comics' },
+      { route: '/kiara/kfp/clips', text: 'Clips' },
+      { route: '/kiara/kfp/kfn', text: 'KFN' },
+      { route: '/kiara/kfp/projects', text: 'History Projects' },
     ]
     return { pages }
   },
@@ -32,12 +30,12 @@ export default defineComponent({
 @import '@/assets/kiara'
 
 $line-color: $kiara-black
-$navlink-tilt: 25px
+$navlink-tilt: 15px
 $navlink-bgcolor: $kiara-orange
 $transition-time: 300ms
 
-#navbar
-  background-color: $kiara-green
+#kfp-navbar
+  background-color: $kiara-yellow
   border-bottom: $line-color 1px solid
   transition: opacity $transition-time
 
@@ -67,12 +65,12 @@ $transition-time: 300ms
 
       &::before
         right: 100%
-        border-bottom: 2.5em solid transparent
+        border-bottom: 1.5em solid transparent
         border-left: $navlink-tilt solid transparent
 
       &::after
         left: 100%
-        border-top: 2.5em solid transparent
+        border-top: 1.5em solid transparent
         border-right: $navlink-tilt solid transparent
 
       &:hover, &.current

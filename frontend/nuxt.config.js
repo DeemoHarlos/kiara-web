@@ -31,7 +31,12 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxtjs/composition-api/module',
+    '@nuxtjs/style-resources',
   ],
+
+  styleResources: {
+    sass: ['./assets/general.sass'],
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -40,7 +45,11 @@ export default {
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    loaders: {
+      sass: { sourceMap: false },
+    },
+  },
 
   generate: {
     dir: '../docs',

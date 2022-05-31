@@ -1,5 +1,8 @@
 <template lang="pug">
-  div.display-1.text-center.text-white KFP
+  #kfp.position-relative
+    kiara-kfp-navbar#kfp-navbar.position-absolute
+    #kfp-page-container
+      NuxtChild
 </template>
 
 <script lang="ts">
@@ -13,4 +16,20 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import '@/assets/kiara'
+
+$navbar-height: 65px
+$kfp-navbar-height: 40px
+
+#kfp
+  #kfp-page-container
+    height: calc(100vh - #{$navbar-height} - #{$kfp-navbar-height})
+    overflow-y: auto
+    margin-top: $kfp-navbar-height
+    background-color: $kiara-yellow
+  #kfp-navbar
+    top: -$kfp-navbar-height
+    left: 0
+    height: $kfp-navbar-height
+
 </style>
