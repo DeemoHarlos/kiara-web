@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
 
-import { VideoInfo } from '@/components/kiara/videoItem.vue'
+import { VideoInfo } from '@/util/types'
 
 import { getApiData } from '@/util/api'
 
