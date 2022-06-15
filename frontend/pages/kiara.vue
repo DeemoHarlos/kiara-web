@@ -49,10 +49,10 @@ $transition-time: 300ms
   color: $kiara-black
   #bg-image-container
     inset: 0
-    z-index: -1
   #page-container
     height: 100vh
     overflow-y: auto
+    position: relative
     margin-top: $navbar-height
     background-color: rgba($kiara-black, 0.75)
     #back
