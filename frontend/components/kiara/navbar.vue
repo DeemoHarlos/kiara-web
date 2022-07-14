@@ -5,7 +5,7 @@
     template(v-for="(page, index) in pages")
       .navline-line(v-if="index")
       NuxtLink.navlink.flex-fill.mx-3.text-center.text-white(:to="page.route")
-        div.flex-row-center.position-relative.h-100.py-2(:class="{ current: page.route === $route.path }")
+        div.flex-row-center.position-relative.h-100.py-2(:class="{ current: $route.path.startsWith(page.route) }")
           span.h6.w-100.m-0.pb-1 {{ page.text }}
 </template>
 

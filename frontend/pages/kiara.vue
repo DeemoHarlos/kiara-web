@@ -63,6 +63,7 @@ $transition-time: 300ms
   #navbar
     opacity: 1
     top: 0
+    z-index: 200
     height: $navbar-height
     transition: opacity $transition-time
 

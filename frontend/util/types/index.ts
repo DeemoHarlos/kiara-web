@@ -11,3 +11,19 @@ export type VideoInfo = {
   customTags: string[]
   language: string
 }
+
+export type MusicInfo = {
+  name: string
+  members: string[]
+  type: string
+  composer: string
+  publishDate: string
+  url: string
+  imageUrl: string
+}
+
+export type TimelineInfo = {
+  date: string
+  type: string
+  description: string
+}
