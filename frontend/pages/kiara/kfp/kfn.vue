@@ -1,5 +1,6 @@
 <template lang="pug">
-  div
+  .page-container
+    .display-1.text-center.text-white Coming Soon
 </template>
 
 <script lang="ts">

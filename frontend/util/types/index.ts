@@ -27,3 +27,17 @@ export type TimelineInfo = {
   type: string
   description: string
 }
+
+export type FanArtInfo = {
+  imageUrl: string
+  artist: string
+  source: string
+  artistLink: string
+}
+
+export type FanMusicInfo = {
+  imageUrl: string
+  artist: string
+  source: string
+  artistLink: string
+}
