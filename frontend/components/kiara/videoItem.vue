@@ -24,19 +24,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType, toRefs } from '@nuxtjs/composition-api'
 
-export type VideoInfo = {
-  ID: string
-  url: string
-  title: string
-  time: string
-  type: string
-  subtype: string
-  isSponsored: boolean
-  streamHost: string
-  members: string[]
-  customTags: string[]
-  language: string
-}
+import { VideoInfo } from '@/util/types'
 
 export default defineComponent({
   props: {

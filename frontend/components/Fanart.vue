@@ -2,8 +2,7 @@
   div.fanart.w-100.h-100.position-relative.overflow-hidden
     div.blur.w-100.h-100(:style="{ backgroundImage: `url('${imageUrl}')` }")
     div.image.w-100.h-100(:style="combinedImageStyle")
-      div.artist(:style="combinedArtistStyle")
-        slot(name="artist") {{ artist }}
+      a.artist(:href="link" target="_blank" :style="combinedArtistStyle") {{ artist }}
 </template>
 
 <script lang="ts">
@@ -14,6 +13,7 @@ import * as CSS from 'csstype'
 export type FanartOption = {
   imageUrl: string
   artist: string
+  link: string
   imageStyle?: CSS.Properties
   artistStyle?: CSS.Properties
 }
@@ -23,6 +23,7 @@ export default defineComponent({
   props: {
     imageUrl: { type: String, required: true },
     artist: { type: String, required: true },
+    link: { type: String, required: true },
     imageStyle: { type: Object as PropType<CSS.Properties>, default: () => ({}) },
     artistStyle: { type: Object as PropType<CSS.Properties>, default: () => ({}) },
   },
@@ -43,6 +44,7 @@ export default defineComponent({
       fontFamily: 'monospace',
       color: '#FFFFFF99',
       textShadow: '0 0 5px black',
+      zIndex: 100,
     }
 
     const combinedImageStyle = computed(() => {
