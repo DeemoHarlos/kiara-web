@@ -2,6 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
 
+import https from 'https'
+
 import { SHEET, getData } from './db'
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') })
@@ -26,6 +28,8 @@ app.get('/:ID', async(req, res) => {
   res.json(data)
 })
 
-app.listen(port, () => {
-  console.log(`Server is listening on ${port}.`)
-})
+https.createServer({
+  key: '/etc/letsencrypt/live/cloud.harlos.me/privkey.pem',
+  cert: '/etc/letsencrypt/live/cloud.harlos.me/fullchain.pem',
+}, app).listen(port)
+console.log(`Server is listening on ${port}.`)
