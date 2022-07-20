@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
 
+import FS from 'fs'
 import https from 'https'
 
 import { SHEET, getData } from './db'
@@ -28,8 +29,10 @@ app.get('/:ID', async(req, res) => {
   res.json(data)
 })
 
+const privateKey = FS.readFileSync('/etc/letsencrypt/live/cloud.harlos.me/privkey.pem')
+const certificate = FS.readFileSync('/etc/letsencrypt/live/cloud.harlos.me/fullchain.pem')
 https.createServer({
-  key: '/etc/letsencrypt/live/cloud.harlos.me/privkey.pem',
-  cert: '/etc/letsencrypt/live/cloud.harlos.me/fullchain.pem',
+  key: privateKey,
+  cert: certificate,
 }, app).listen(port)
 console.log(`Server is listening on ${port}.`)
