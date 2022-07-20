@@ -1,4 +1,4 @@
-# vtuber-world-nuxt
+# kiara-web-nuxt
 
 ## Build Setup
 

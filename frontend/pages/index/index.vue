@@ -5,7 +5,7 @@
       #subtitle The Majestic Phoenix
 
     #scroll-down.w-100.text-center.text-white
-      NuxtLink(to="/kiara/intro"): BIconChevronCompactDown
+      NuxtLink(to="/intro"): BIconChevronCompactDown
 </template>
 
 <script lang="ts">
