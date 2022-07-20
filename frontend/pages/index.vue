@@ -39,6 +39,12 @@ export default defineComponent({
 })
 </script>
 
+<style lang="sass">
+html
+  @media screen and (max-width: 768px)
+    font-size: 10px
+</style>
+
 <style lang="sass" scoped>
 @import '@/assets/kiara'
 

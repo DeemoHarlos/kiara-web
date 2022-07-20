@@ -1,6 +1,6 @@
 <template lang="pug">
-  #navbar.flex-row.middle-center.w-100.px-5.py-2
-    span#navbar-name.mr-5
+  #navbar.flex-row.middle-center.w-100.px-3.px-lg-5.py-2
+    span#navbar-name.mr-3.mr-lg-5
       NuxtLink(to="/") Takanashi Kiara
     template(v-for="(page, index) in pages")
       .navline-line(v-if="index")
@@ -43,6 +43,8 @@ $transition-time: 300ms
 
   #navbar-name
     font-size: 2rem
+    @media screen and (max-width: 992px)
+      font-size: 1.5rem
 
   .navline-line
     width: 1px

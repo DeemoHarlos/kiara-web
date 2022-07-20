@@ -1,6 +1,6 @@
 <template lang="pug">
   div#intro.page-container.container-xl: div.h-100.flex-row.stretch-center
-    div.text-frame.py-5.pl-5
+    div.text-frame.py-5.pl-0.pl-md-5
       #attributes.pb-3
         .item.flex-row.middle-center.pb-1(v-for="item in attributeList")
           .attr.pr-3.text-right {{ item.attribute.toUpperCase() }}
@@ -21,7 +21,7 @@
         Kiara is a phoenix, not a chicken or turkey. (Very important)<br>
         She burns brightly, working herself to the bone since
         she'll just be reborn from her ashes anyway.
-    div.image-frame
+    div.image-frame.d-none.d-lg-block
       img(src="@/assets/kiara/kiara_full.png" alt="Takanashi Kiara").h-100
 </template>
 
@@ -53,7 +53,7 @@ export default defineComponent({
 
 #intro
   height: 100%
-  overflow-y: hidden
+  overflow-y: auto
 
   .text-frame
     color: white
@@ -65,6 +65,8 @@ export default defineComponent({
         line-height: 3rem
         border-right: solid white 1px
         width: 160px
+        @media screen and (max-width: 768px)
+          width: 80px
       .value
         font-size: 2rem
       .attr, .value
