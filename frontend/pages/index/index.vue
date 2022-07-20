@@ -1,11 +1,11 @@
 <template lang="pug">
-  #cover.full-screen.d-flex.flex-column
+  #cover.d-flex.flex-column
     #title-text.text-center.text-white
       #title Takanashi Kiara
       #subtitle The Majestic Phoenix
 
     #scroll-down.w-100.text-center.text-white
-      NuxtLink(to="/kiara/intro"): BIconChevronCompactDown
+      NuxtLink(to="/intro"): BIconChevronCompactDown
 </template>
 
 <script lang="ts">
@@ -27,7 +27,7 @@ $transition-time: 300ms
   transition: height $transition-time, padding $transition-time
 
   #title-text
-    padding-top: 50vh
+    padding-top: 40vh
     &.scroll-index
       opacity: 1
     &.scroll-intro
@@ -49,8 +49,12 @@ $transition-time: 300ms
 
   #scroll-down
     font-size: 9rem
+    filter: drop-shadow(0px 0px 10px black)
     bottom: 0
-    transition: opacity $transition-time
+
+    &>a
+      line-height: .5em
+
     &.scroll-intro, &.scroll-pages
       z-index: -10
 </style>

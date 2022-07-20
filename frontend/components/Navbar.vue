@@ -1,7 +1,7 @@
 <template lang="pug">
-  #navbar.flex-row.middle-center.w-100.px-5.py-2
-    span#navbar-name.mr-5
-      NuxtLink(to="/kiara/") Takanashi Kiara
+  #navbar.flex-row.middle-center.w-100.px-3.px-lg-5.py-2
+    span#navbar-name.mr-3.mr-lg-5
+      NuxtLink(to="/") Takanashi Kiara
     template(v-for="(page, index) in pages")
       .navline-line(v-if="index")
       NuxtLink.navlink.flex-fill.mx-3.text-center.text-white(:to="page.route")
@@ -15,13 +15,13 @@ import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
   setup() {
     const pages = [
-      { route: '/kiara/intro', text: 'Intro' },
-      { route: '/kiara/lore', text: 'Lore' },
-      { route: '/kiara/history', text: 'History' },
-      { route: '/kiara/timeline', text: 'Timeline' },
-      { route: '/kiara/videos', text: 'Videos' },
-      { route: '/kiara/music', text: 'Music' },
-      { route: '/kiara/kfp', text: 'KFP' },
+      { route: '/intro', text: 'Intro' },
+      { route: '/lore', text: 'Lore' },
+      { route: '/history', text: 'History' },
+      { route: '/timeline', text: 'Timeline' },
+      { route: '/videos', text: 'Videos' },
+      { route: '/music', text: 'Music' },
+      { route: '/kfp', text: 'KFP' },
     ]
     return { pages }
   },
@@ -43,6 +43,8 @@ $transition-time: 300ms
 
   #navbar-name
     font-size: 2rem
+    @media screen and (max-width: 992px)
+      font-size: 1.5rem
 
   .navline-line
     width: 1px

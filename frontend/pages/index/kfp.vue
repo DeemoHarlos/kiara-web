@@ -1,6 +1,6 @@
 <template lang="pug">
   #kfp.position-relative
-    kiara-kfp-navbar#kfp-navbar.position-absolute
+    KfpNavbar#kfp-navbar.position-absolute
     #kfp-page-container
       NuxtChild
 </template>

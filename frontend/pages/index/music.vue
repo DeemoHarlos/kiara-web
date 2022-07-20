@@ -3,7 +3,7 @@
     .display-1.text-center.text-white Music
     .row
       .col-4(v-for="(music, i) in musicList")
-        kiara-music-item.mx-auto.my-5(:musicInfo="music" :key="i")
+        MusicItem.mx-auto.my-5(:musicInfo="music" :key="i")
 </template>
 
 <script lang="ts">

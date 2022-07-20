@@ -13,13 +13,13 @@ import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
   setup() {
     const pages = [
-      { route: '/kiara/kfp/art', text: 'Artwork' },
-      { route: '/kiara/kfp/music', text: 'Music' },
-      { route: '/kiara/kfp/animation', text: 'Animation' },
-      { route: '/kiara/kfp/comics', text: 'Comics' },
-      { route: '/kiara/kfp/clips', text: 'Clips' },
-      { route: '/kiara/kfp/kfn', text: 'KFN' },
-      { route: '/kiara/kfp/projects', text: 'History Projects' },
+      { route: '/kfp/art', text: 'Artwork' },
+      { route: '/kfp/music', text: 'Music' },
+      { route: '/kfp/animation', text: 'Animation' },
+      { route: '/kfp/comics', text: 'Comics' },
+      { route: '/kfp/clips', text: 'Clips' },
+      { route: '/kfp/kfn', text: 'KFN' },
+      { route: '/kfp/projects', text: 'History Projects' },
     ]
     return { pages }
   },
