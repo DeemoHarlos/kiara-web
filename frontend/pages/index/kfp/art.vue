@@ -1,7 +1,7 @@
 <template lang="pug">
   .page-container
     .row
-      .fanart-item.col-6.col-lg-4.col-xl-3.position-relative.my-3(v-for="(fanart, i) in fanartList" :key="i")
+      .fanart-item.col-12.col-sm-6.col-lg-4.col-xl-3.position-relative.my-3(v-for="(fanart, i) in fanartList" :key="i")
         .image.h-100.position-relative(:style="{ 'background-image' : `url('${fanart.imageUrl}')` }")
           a.position-absolute.w-100.h-100.flex-row.middle-center.text-center(
             :href="fanart.source"
