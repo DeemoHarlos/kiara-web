@@ -1,8 +1,27 @@
 <template lang="pug">
   .video-item
-    b-card(
+    b-card.d-none.d-md-flex(
       :img-src="`https://img.youtube.com/vi/${videoInfo.ID}/mqdefault.jpg`"
       img-left
+    )
+      b-card-title
+        div
+          b-badge.type.mr-2(pill variant="secondary")
+            | {{ videoInfo.type }}
+          b-badge.subtype.mr-2(pill variant="secondary")
+            | {{ videoInfo.subtype }}
+        div {{ videoInfo.title }}
+      b-card-text
+        p
+          | {{ time }}
+          br
+          template(v-for="(tag, i) in videoInfo.customTags")
+            b-badge.tag.mr-2(pill variant="secondary" :key="i")
+              | {{ tag }}
+      a.stretched-link(:href="videoInfo.url" target="_blank")
+    b-card.d-flex.d-md-none(
+      :img-src="`https://img.youtube.com/vi/${videoInfo.ID}/mqdefault.jpg`"
+      img-top
     )
       b-card-title
         div

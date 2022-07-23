@@ -2,7 +2,7 @@
   .page-container.container-xl
     .display-1.text-center.text-white Music
     .row
-      .col-4(v-for="(music, i) in musicList")
+      .col-12.col-sm-6.col-lg-4.my-3.flex-row.middle-center(v-for="(music, i) in musicList")
         MusicItem.mx-auto.my-5(:musicInfo="music" :key="i")
 </template>
 
