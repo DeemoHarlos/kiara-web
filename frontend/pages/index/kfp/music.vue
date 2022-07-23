@@ -1,7 +1,7 @@
 <template lang="pug">
   .page-container
     .row
-      .col-3(v-for="(music, i) in musicList")
+      .col-6.col-lg-4.col-xl-3.my-3.flex-row.middle-center(v-for="(music, i) in musicList")
         .music-item.position-relative
           .image.h-100(:style="{ 'background-image' : `url('${music.imageUrl}')` }")
           a.position-absolute.w-100.h-100.flex-row.middle-center(

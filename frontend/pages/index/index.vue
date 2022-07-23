@@ -42,10 +42,14 @@ $transition-time: 300ms
     #title
       font-size: 6rem
       font-weight: 300
+      @media screen and (max-width: 768px)
+        font-size: 3rem
 
     #subtitle
       font-size: 3rem
       font-weight: 300
+      @media screen and (max-width: 768px)
+        font-size: 1.5rem
 
   #scroll-down
     font-size: 9rem
