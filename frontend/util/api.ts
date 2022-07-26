@@ -5,8 +5,11 @@ const API_ROOT =
     ? 'https://cloud.harlos.me:2434/'
     : 'http://localhost:2434/'
 
-type getApiDataFunc = <T>(resource: string) => Promise<Array<T>>
-export const getApiData: getApiDataFunc = async <T>(resource: string) => {
-  const response = await axios.get(`${API_ROOT}${resource}`)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getApiData = async <T>(resource: string, pagination?: { page: number, per: number }, filter?: any) => {
+  const paginationQuery = pagination || {}
+  const filterString = filter ? JSON.stringify(filter) : '{}'
+  const queryString = new URLSearchParams({ ...paginationQuery, filter: filterString })
+  const response = await axios.get(`${API_ROOT}${resource}?${queryString.toString()}`)
   return response.data as Array<T>
 }

@@ -8,25 +8,36 @@
             target="_blank"
           )
             a(:href="fanart.artistLink" target="_blank") {{ fanart.artist }}
+    InfiniteLoading(@infinite="loadMore" spinner="spiral")
+      div(slot="no-more"): hr
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
+import { defineComponent, ref } from '@nuxtjs/composition-api'
+import InfiniteLoading, { StateChanger } from 'vue-infinite-loading'
 
 import { FanArtInfo } from '@/util/types'
 
 import { getApiData } from '@/util/api'
 
 export default defineComponent({
+  components: { InfiniteLoading },
   setup() {
     const fanartList = ref<Array<FanArtInfo>>([])
+    const curPage = ref(1)
+    const per = 16
 
-    onMounted(async() => {
-      fanartList.value = await getApiData<FanArtInfo>('FANART')
-    })
+    const loadMore = async($state: StateChanger) => {
+      const data = await getApiData<FanArtInfo>('FANART', { page: curPage.value, per })
+      fanartList.value = fanartList.value.concat(data)
+      curPage.value ++
+      if (data.length) $state.loaded()
+      else $state.complete()
+    }
 
     return {
       fanartList,
+      loadMore,
     }
   },
 })
