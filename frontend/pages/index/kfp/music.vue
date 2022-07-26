@@ -12,25 +12,36 @@
               | {{ music.name }}
               br
               small {{ music.artist }}
+    InfiniteLoading(@infinite="loadMore" spinner="spiral")
+      div(slot="no-more"): hr
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
+import { defineComponent, ref } from '@nuxtjs/composition-api'
+import InfiniteLoading, { StateChanger } from 'vue-infinite-loading'
 
 import { FanMusicInfo } from '@/util/types'
 
 import { getApiData } from '@/util/api'
 
 export default defineComponent({
+  components: { InfiniteLoading },
   setup() {
     const musicList = ref<Array<FanMusicInfo>>([])
+    const curPage = ref(1)
+    const per = 16
 
-    onMounted(async() => {
-      musicList.value = await getApiData<FanMusicInfo>('FANMUSIC')
-    })
+    const loadMore = async($state: StateChanger) => {
+      const data = await getApiData<FanMusicInfo>('FANMUSIC', { page: curPage.value, per })
+      musicList.value = musicList.value.concat(data)
+      curPage.value ++
+      if (data.length) $state.loaded()
+      else $state.complete()
+    }
 
     return {
       musicList,
+      loadMore,
     }
   },
 })
