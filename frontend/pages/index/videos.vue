@@ -23,7 +23,7 @@ export default defineComponent({
     const per = 10
 
     const loadMore = async($state: StateChanger) => {
-      const data = await getApiData<VideoInfo>('ARCHIEVE', { page: curPage.value, per }, { type: 'music' })
+      const data = await getApiData<VideoInfo>('ARCHIEVE', { page: curPage.value, per })
       data.forEach(video => {
         video.title = video.title.replace(/【[^【】]+】/g, '')
         video.title = video.title.replace(/#[^# ]+/g, '')
