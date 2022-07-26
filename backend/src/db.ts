@@ -42,7 +42,7 @@ const typeConvert: typeConvertFunc = (v, vtype = 'string', format?) => {
     const valueType = vtype.slice(0, -2)
     return String(v)
       .split('\n')
-      .map((value) => typeConvert(value, valueType, format))
+      .map(value => typeConvert(value, valueType, format))
   }
   switch (vtype) {
   case 'string':
@@ -60,7 +60,8 @@ const typeConvert: typeConvertFunc = (v, vtype = 'string', format?) => {
   }
 }
 
-export const getData = async (sheet: SHEET): Promise<Record<KEY, VALUE>[]> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getData = async(sheet: SHEET, pagination?: { page: number, per: number }, filter?: any): Promise<Record<KEY, VALUE>[]> => {
   const data = await getSheetData(SPREADSHEETID, sheet)
   const types = data[1] as TYPE[]
   const formats = data[2] as FORMAT[]
@@ -70,6 +71,19 @@ export const getData = async (sheet: SHEET): Promise<Record<KEY, VALUE>[]> => {
     format: formats[i],
   }))
   const valueArrays = data.slice(3) as VALUE[][]
-  const values = valueArrays.map((arr) => arrayToObject(keys, arr))
+  let values = valueArrays.map(arr => arrayToObject(keys, arr))
+  if (filter) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const filterFunc = (value: any) => {
+      const boolArray = Object.entries(filter).map(([k, v]) => value[k] === v)
+      return boolArray.reduce((a, b) => a && b, true)
+    }
+    values = values.filter(filterFunc)
+  }
+  if (pagination && pagination.page > 0 && pagination.per > 0) {
+    const page = pagination.page - 1
+    const per = pagination.per
+    values = values.slice(page * per, (page + 1) * per)
+  }
   return values
 }

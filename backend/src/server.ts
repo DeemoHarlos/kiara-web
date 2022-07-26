@@ -21,9 +21,17 @@ app.use((_, res, next) => {
 })
 
 app.get('/:ID', async(req, res) => {
-  const ID = req.params.ID as SHEET
-  const data = await getData(ID)
-  res.json(data)
+  try {
+    const ID = req.params.ID as SHEET
+    const page = Number(req.query.page || 0)
+    const per = Number(req.query.per || 0)
+    const filter = JSON.parse(String(req.query.filter || '{}'))
+    const data = await getData(ID, { page, per }, filter)
+    res.json(data)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    res.status(400).send(err.message)
+  }
 })
 
 app.listen(port, () => {
